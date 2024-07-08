@@ -71,6 +71,7 @@ class LoginViewest(APIView):
         user = user.first()
         token = fun.encryptionUser(user)
         result = {'token':token}
+        
         return Response(result,status=status.HTTP_200_OK)
     
 class UserViewest(APIView):
