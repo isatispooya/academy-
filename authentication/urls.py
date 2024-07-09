@@ -1,8 +1,5 @@
 from django.urls import path
-from .views import CaptchaViewest
-from .views import OtpViewest
-from .views import LoginViewest
-from .views import UserViewest
+from .views import CaptchaViewest , OtpViewest ,LoginViewest , UserViewest
 
 urlpatterns = [
     path('captcha/',CaptchaViewest.as_view(),name = 'captcha'),

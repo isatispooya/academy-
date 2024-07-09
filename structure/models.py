@@ -9,7 +9,7 @@ class Information(models.Model):
     fax = models.CharField(max_length=200)
     email = models.EmailField(blank=True, null=True,unique=True )
     address= models.CharField(max_length=800)
-    slider = models.ImageField(upload_to='academy/static/image/', blank=True,null=True)
+    slider = models.ImageField(upload_to='static/image/', blank=True,null=True)
 
     def __str__(self) :
         return f'{self.name}'

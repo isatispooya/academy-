@@ -62,7 +62,7 @@ class LoginViewest(APIView):
             return Response(result,status=status.HTTP_400_BAD_REQUEST)
         otp_obj = otp_obj.first()
         now = datetime.datetime.now()
-        deley = now-datetime.timedelta(minutes=10)
+        deley = now-datetime.timedelta(minutes=120)
         if otp_obj.date.timestamp()<=deley.timestamp():
             result = {'message':'کد منقضی شده است'}
             otp_obj.delete()
@@ -79,10 +79,9 @@ class UserViewest(APIView):
        token = request.headers['Authorization']
        user = fun.decryptionUser(token)
        if not user:
-           result = {'message':'ن'}
+           result = {'message':'کاربر یافت نشد'}
            return Response(result,status=status.HTTP_400_BAD_REQUEST)
        userserialize = serializers.CustomerSerializer(user.first()).data
-    #    print(user)
+   
        return Response(userserialize,status=status.HTTP_200_OK)
-
 
