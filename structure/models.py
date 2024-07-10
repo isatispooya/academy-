@@ -13,3 +13,21 @@ class Information(models.Model):
 
     def __str__(self) :
         return f'{self.name}'
+    
+class SliderShow(models.Model):
+    slider = models.ImageField(upload_to = 'static/image/',blank = True, null = True)
+    title = models.CharField(max_length=200)
+    discription = models.CharField(max_length=200)
+    url = models.CharField(max_length=200)
+    create_at = models.DateField()
+
+    def __str__(self) :
+        return f'{self.title}'
+    
+class Menu(models.model):
+    icon = models.ImageField(upload_to='static/image/')
+    tilte = models.CharField(max_length=200)
+    url = models.CharField(max_length=200)
+    
+    def __str__(self):
+        return f'{self.title}'
