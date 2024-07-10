@@ -9,7 +9,9 @@ class Information(models.Model):
     fax = models.CharField(max_length=200)
     email = models.EmailField(blank=True, null=True,unique=True )
     address= models.CharField(max_length=800)
-    slider = models.ImageField(upload_to='static/image/', blank=True,null=True)
+    enamad = models.CharField(max_length=700 ,blank=True, null=True )
+    create_at = models.DateField()
+
 
     def __str__(self) :
         return f'{self.name}'
@@ -24,10 +26,19 @@ class SliderShow(models.Model):
     def __str__(self) :
         return f'{self.title}'
     
-class Menu(models.model):
-    icon = models.ImageField(upload_to='static/image/')
-    tilte = models.CharField(max_length=200)
+class Menu(models.Model):
+    icon = models.ImageField(upload_to='static/image/', null=True , blank=True)
+    title = models.CharField(max_length=200)
     url = models.CharField(max_length=200)
     
     def __str__(self):
         return f'{self.title}'
+
+class SubMenu(models.Model):
+    
+    icon = models.ImageField(upload_to='static/image/' ,null=True , blank=True)
+    title = models.CharField(max_length=200)
+    url = models.CharField(max_length=200)
+    menu = models.ManyToManyField(Menu, null=True, blank=True)
+    def __str__(self):
+        return f'{self.title}'   
