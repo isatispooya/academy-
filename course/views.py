@@ -16,11 +16,6 @@ class AllCourseViewest(APIView):
 
 class AllGroupViewset(APIView):
     def get(self,request):
-       token = request.headers['Authorization']
-       user = fun.decryptionUser(token)
-       if not user:
-           result = {'message':'کاربر یافت نشد'}
-           return Response(result,status=status.HTTP_400_BAD_REQUEST)
        group = models.Grouping.objects.all()
        
        if not group.exists():
@@ -29,3 +24,23 @@ class AllGroupViewset(APIView):
        serialize = groupingserializer(group,many=True)
        return Response(serialize.data, status=status.HTTP_200_OK)
     
+class AllCourseGroupView(APIView):
+    def get(self,request,group):
+        group = models.Grouping.objects.filter(id=group)
+        if not group.exists():
+            result ={'message':"گروه وجود ندارد"}
+            return Response(result,status=status.HTTP_404_NOT_FOUND)
+        group = group.first()
+        
+
+
+        course = models.Course.objects.filter(grouping=group)
+        if not course.exists():
+            result ={'message':"وجود ندارد"}
+
+            return Response(result,status=status.HTTP_404_NOT_FOUND)
+        
+        serialize = CourseSerializer(course,many=True)
+        return Response(serialize.data,status=status.HTTP_200_OK)
+
+
