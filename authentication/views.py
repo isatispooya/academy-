@@ -84,4 +84,6 @@ class UserViewest(APIView):
        userserialize = serializers.CustomerSerializer(user.first()).data
    
        return Response(userserialize,status=status.HTTP_200_OK)
+    
+
 
