@@ -11,8 +11,10 @@ from authentication import fun
 class AllCourseViewest(APIView):
     def get(self,request):
        course = models.Course.objects.all()
-       course =CourseSerializer(course,many=True, null = True , blank = True ).data
+       course =CourseSerializer(course,many=True).data
        return Response(course,status=status.HTTP_200_OK)
+
+
 
 class AllGroupViewset(APIView):
     def get(self,request):

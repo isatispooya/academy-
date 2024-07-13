@@ -33,6 +33,9 @@ class AllInformation(APIView):
 
         if not information.exists():
             return Response({"messages":"اطلاعات وجود ندارد"},status=status.HTTP_404_NOT_FOUND)
-
-        information =InformationSerializer(information,many=True).data
+        information = information.first()
+        information =InformationSerializer(information).data
         return Response(information,status=status.HTTP_200_OK)
+     
+     
+    

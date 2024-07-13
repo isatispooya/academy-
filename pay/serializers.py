@@ -12,3 +12,7 @@ class PaySerializer(serializers.ModelSerializer):
         model = models.Pay
         fields = '__all__'
 
+class BasketBuySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.BasketBuy
+        fields = '__all__'
